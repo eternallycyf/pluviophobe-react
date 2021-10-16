@@ -1,13 +1,10 @@
-import React, {FC, ButtonHTMLAttributes, AnchorHTMLAttributes} from 'react'
-
-export type ButtonSize = 'lg' | 'sm'
-export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
+import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
 
 interface BaseButtonProps {
   className?: string;
   disabled?: boolean;
-  size?: ButtonSize;
-  btnType?: ButtonType;
+  size?: 'lg' | 'sm';
+  btnType?: 'primary' | 'default' | 'danger' | 'link';
   children?: React.ReactNode,
   href?: string
 }
@@ -21,13 +18,13 @@ const Button: FC<ButtonProps> = (props: any): any => {
     className = '',
     disabled = false,
     size = 'lg',
-    btnType = 'btn',
+    btnType = 'primary',
     children = null,
     // eslint-disable-next-line no-script-url
     href = "javaScript:;",
     ...restProps
   } = props
-  const classes = `btn ${className} btn-${btnType} btn-${size} ${disabled ? "disabled" : ""}`
+  const classes = `btn btn-default ${className} btn-${btnType} btn-${size} ${disabled && "disabled"}`
 
   if (btnType === 'link') {
     return (
