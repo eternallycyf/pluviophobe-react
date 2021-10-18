@@ -1,7 +1,6 @@
-import React, { useContext, useState, FC, Children, FunctionComponentElement, MouseEvent, cloneElement } from 'react'
+import { useContext, useState, FC, Children, FunctionComponentElement, MouseEvent, cloneElement } from 'react'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
-
 export interface SubMenuProps {
   index?: string;
   title: string;
@@ -17,7 +16,7 @@ const SubMenu: FC<SubMenuProps> = (props) => {
   const context = useContext(MenuContext)
   const openedSubMenus = context.defaultOpenSubMenus as Array<string>
   const isOpened = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false
-  const [menuOpen, setMenuOpen] = React.useState(isOpened)
+  const [menuOpen, setMenuOpen] = useState(isOpened)
   const classes = `menu-item submenu-item ${className} ${context.index === index && 'is-active'}  `
   const handleClick = (e: MouseEvent) => {
     e.preventDefault()
@@ -63,5 +62,4 @@ const SubMenu: FC<SubMenuProps> = (props) => {
 }
 
 SubMenu.displayName = 'SubMenu'
-
 export default SubMenu

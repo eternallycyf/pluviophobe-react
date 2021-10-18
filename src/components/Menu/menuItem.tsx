@@ -6,7 +6,6 @@ export interface MenuItemProps {
   className?: string;
   style?: CSSProperties
 }
-
 const MenuItem: FC<MenuItemProps> = (props) => {
   const {
     index,
@@ -28,7 +27,5 @@ const MenuItem: FC<MenuItemProps> = (props) => {
     </>
   )
 }
-
 MenuItem.displayName = 'MenuItem'
 export default MenuItem
-

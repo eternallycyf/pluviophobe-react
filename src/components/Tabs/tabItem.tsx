@@ -1,20 +1,23 @@
-import { CSSProperties, FC, useContext } from 'react'
+import { CSSProperties, FC, ReactNode, useContext } from 'react'
 import { TabsContext } from './tabs'
 
 export interface TabsItemProps {
-  index: number;
+  index?: string;
   disabled?: boolean;
   className?: string;
-  style?: CSSProperties
+  style?: CSSProperties;
+  label?: ReactNode | string;
+  children?: ReactNode;
 }
 
-const Tabs: FC<TabsItemProps> = (props) => {
+const TabItem: FC<TabsItemProps> = (props) => {
   const {
-    index = 0,
+    index = '0',
     disabled = false,
     className = '',
     style = {},
-    children
+    children,
+    label = "",
   } = props
   const context = useContext(TabsContext)
   const classes = `tabs-item ${className} ${disabled && 'is-disabled'} ${context.index === index && 'is-active'}`
@@ -24,9 +27,10 @@ const Tabs: FC<TabsItemProps> = (props) => {
   return (
     <>
       <li className={classes} style={style} onClick={handleClick}>
-        {children}
+        {label}
       </li>
     </>
   )
 }
-export default Tabs
+TabItem.displayName = 'TabItem'
+export default TabItem

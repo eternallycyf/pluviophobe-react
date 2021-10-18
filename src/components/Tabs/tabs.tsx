@@ -1,8 +1,8 @@
-import React, { createContext, CSSProperties, FC, ReactNode } from 'react'
-
-type onSelectCallBack = (index: number) => void
+import React, { Children, cloneElement, createContext, CSSProperties, FC, FunctionComponentElement, ReactNode } from 'react'
+import { TabsItemProps } from './tabItem'
+type onSelectCallBack = (index: string) => void
 export interface TabsProps {
-  defaultIndex?: number;
+  defaultIndex?: string;
   mode?: 'default' | 'card';
   onSelect?: onSelectCallBack;
   className?: string;
@@ -10,39 +10,53 @@ export interface TabsProps {
   style?: CSSProperties;
 }
 export interface ITabsContext {
-  index?: number;
+  index?: string;
   onSelect?: onSelectCallBack
 }
-export const TabsContext = createContext<ITabsContext>({ index: 0 })
-
-
+export const TabsContext = createContext<ITabsContext>({ index: '0' })
 const Tabs: FC<TabsProps> = (props) => {
   const {
-    defaultIndex = 0,
+    defaultIndex = '0',
     onSelect,
     className = "",
     children,
     style = {},
-    mode = 'default'
+    mode = 'default',
   } = props
   const classes = `pl-tabs-${mode === 'card' ? 'card' : 'default'} tabs-horizontal ${className} `
   const [currentActive, setCurrentActive] = React.useState(defaultIndex)
-  const handleClick = (index: number) => {
+  const handleClick = (index: string) => {
     setCurrentActive(index)
     onSelect && onSelect(index)
   }
   const passedContext: ITabsContext = {
-    index: currentActive || 0,
+    index: currentActive || '0',
     onSelect: handleClick
   }
-
+  const renderChildren = () => {
+    return Children.map(children, (child, index) => {
+      const childElement = child as FunctionComponentElement<TabsItemProps>
+      const { displayName } = childElement.type
+      return displayName === 'TabItem' ?
+        cloneElement(childElement, { index: index.toString() }) :
+        console.error('Warning: Menu has a child which is not a MenuItem Component');
+    })
+  }
+  const renderChildrenContext = () => {
+    return Children.map(children, (child, index) => {
+      const childElement = child as FunctionComponentElement<TabsItemProps>
+      const { displayName } = childElement.type
+      return displayName === 'TabItem' && currentActive === index.toString() && childElement.props.children
+    })
+  }
   return (
     <>
       <ul className={classes} style={style}>
         <TabsContext.Provider value={passedContext}>
-          {children}
+          {renderChildren()}
         </TabsContext.Provider>
       </ul>
+      <div>{renderChildrenContext()}</div>
     </>
   )
 }

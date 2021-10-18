@@ -49,10 +49,7 @@ const Menu: FC<MenuProps> = (props) => {
         console.error('Warning: Menu has a child which is not a MenuItem Component');
     })
   }
-
   let classes = `pl-menu ${className} ${mode === 'vertical' ? 'menu-vertical' : 'menu-horizontal'}`
-
-
   return (
     <>
       <ul className={classes} style={style}>
@@ -63,5 +60,4 @@ const Menu: FC<MenuProps> = (props) => {
     </>
   )
 }
-
 export default Menu
