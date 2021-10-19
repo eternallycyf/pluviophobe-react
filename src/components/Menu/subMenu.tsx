@@ -1,6 +1,8 @@
 import { useContext, useState, FC, Children, FunctionComponentElement, MouseEvent, cloneElement } from 'react'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
+import Icon from '../Icon/Icon'
+import Transition from '../Transition'
 export interface SubMenuProps {
   index?: string;
   title: string;
@@ -17,7 +19,7 @@ const SubMenu: FC<SubMenuProps> = (props) => {
   const openedSubMenus = context.defaultOpenSubMenus as Array<string>
   const isOpened = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false
   const [menuOpen, setMenuOpen] = useState(isOpened)
-  const classes = `menu-item submenu-item ${className} ${context.index === index && 'is-active'}  `
+  const classes = `menu-item submenu-item ${className} ${context.index === index && 'is-active'} ${menuOpen && 'is-opened'} ${context.mode === 'vertical' && 'is-vertical'}`
   const handleClick = (e: MouseEvent) => {
     e.preventDefault()
     setMenuOpen(!menuOpen)
@@ -46,15 +48,22 @@ const SubMenu: FC<SubMenuProps> = (props) => {
         console.error('Warning: SubMenu has a child which is not a MenuItem Component');
     })
     return (
-      <ul className={subMenuClasses} >
-        {childComponent}
-      </ul>
+      <Transition
+        in={menuOpen}
+        timeout={300}
+        animation="zoom-in-top"
+      >
+        <ul className={subMenuClasses}>
+          {childComponent}
+        </ul>
+      </Transition>
     )
   }
   return (
     <li key={index} className={classes} {...hoverEvents}>
       <div className='submenu-title' {...clickEvents}>
         {title}
+        <Icon icon="angle-down" className="arrow-icon" />
       </div>
       {renderChildren()}
     </li>

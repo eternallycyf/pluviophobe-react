@@ -1,6 +1,5 @@
 import { CSSProperties, FC, ReactNode, useContext } from 'react'
 import { TabsContext } from './tabs'
-
 export interface TabsItemProps {
   index?: string;
   disabled?: boolean;
@@ -9,7 +8,6 @@ export interface TabsItemProps {
   label?: ReactNode | string;
   children?: ReactNode;
 }
-
 const TabItem: FC<TabsItemProps> = (props) => {
   const {
     index = '0',

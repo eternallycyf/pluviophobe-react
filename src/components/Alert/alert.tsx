@@ -1,17 +1,18 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
-
 interface BaseAlertProps {
-  type?: 'success' | 'info' | 'error' | 'warning' | any;
+  type?: 'success' | 'info' | 'error' | 'warning';
   className?: string;
-  message?: ReactNode | string;
+  message?: ReactNode;
   description?: ReactNode | string;
   closable?: boolean;
 }
-
+export type OverrideProperty<T, K extends keyof T, U> = Omit<T, K> & { [P in keyof Pick<T, K>]: U };
 type NativeButtonProps = BaseAlertProps & ComponentProps<'button'>;
 type NativeDivProps = BaseAlertProps & ComponentProps<'div'>;
-export type AlertProps = Partial<NativeButtonProps & NativeDivProps>
-
+export type AlertProps =
+  OverrideProperty<
+    Partial<NativeButtonProps & NativeDivProps>,
+    "type", 'success' | 'info' | 'error' | 'warning'>
 const Alert: FC<AlertProps> = (props) => {
   const {
     type = 'success',
@@ -23,7 +24,6 @@ const Alert: FC<AlertProps> = (props) => {
   } = props
   const classes = `alert  alert-content ${className} alert-${type}`
   let close = closable ? 'block' : 'none'
-
   let [divClose, setDivClose] = React.useState('block')
   return (
     <div style={{ display: `${divClose}` }}>

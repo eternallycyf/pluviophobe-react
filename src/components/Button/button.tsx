@@ -1,39 +1,37 @@
 import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
-
 interface BaseButtonProps {
   className?: string;
   disabled?: boolean;
   size?: 'lg' | 'sm';
-  btnType?: 'primary' | 'default' | 'danger' | 'link';
+  type?: 'primary' | 'default' | 'danger' | 'link';
   children?: React.ReactNode,
   href?: string
 }
-
+type OverrideProperty<T, K extends keyof T, U> = Omit<T, K> & { [P in keyof Pick<T, K>]: U };
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
-export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
-
-const Button: FC<ButtonProps> = (props: any): any => {
+type ButtonPropsOrigin = Partial<NativeButtonProps & AnchorButtonProps>
+export type ButtonProps = OverrideProperty<ButtonPropsOrigin, 'type', 'primary' | 'default' | 'danger' | 'link'>
+const Button: FC<ButtonProps> = (props) => {
   const {
     className = '',
     disabled = false,
     size = 'lg',
-    btnType = 'primary',
+    type = 'primary',
     children = null,
     // eslint-disable-next-line no-script-url
     href = "javaScript:;",
     ...restProps
   } = props
-  const classes = `btn btn-default ${className} btn-${btnType} btn-${size} ${disabled && "disabled"}`
+  const classes = `btn  ${className} btn-${type} btn-${size} ${disabled && "disabled"}`
 
-  if (btnType === 'link') {
+  if (type === 'link') {
     return (
       <a className={classes} href={href} {...restProps}>
         {children}
       </a>
     )
   }
-
   return (
     <button
       className={classes}
@@ -44,6 +42,4 @@ const Button: FC<ButtonProps> = (props: any): any => {
     </button>
   )
 }
-
-
 export default Button

@@ -1,6 +1,5 @@
 import { CSSProperties, FC, createContext, useState, Children, FunctionComponentElement, cloneElement } from 'react'
 import { MenuItemProps } from './menuItem'
-
 type SelectCallback = (selectedIndex: string) => void;
 type MenuMode = 'horizontal' | 'vertical'
 export interface MenuProps {
@@ -18,7 +17,6 @@ interface IMenuContext {
   defaultOpenSubMenus?: string[]
 }
 export const MenuContext = createContext<IMenuContext>({ index: '0' })
-
 const Menu: FC<MenuProps> = (props) => {
   const {
     className,
