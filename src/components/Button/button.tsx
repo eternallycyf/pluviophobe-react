@@ -19,7 +19,6 @@ const Button: FC<ButtonProps> = (props) => {
     size = 'lg',
     type = 'primary',
     children = null,
-    // eslint-disable-next-line no-script-url
     href = "javaScript:;",
     ...restProps
   } = props

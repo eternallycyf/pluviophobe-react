@@ -5,7 +5,7 @@ export interface TabsItemProps {
   disabled?: boolean;
   className?: string;
   style?: CSSProperties;
-  label?: ReactNode | string;
+  label?: ReactNode;
   children?: ReactNode;
 }
 const TabItem: FC<TabsItemProps> = (props) => {

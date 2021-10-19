@@ -3,7 +3,7 @@ interface BaseAlertProps {
   type?: 'success' | 'info' | 'error' | 'warning';
   className?: string;
   message?: ReactNode;
-  description?: ReactNode | string;
+  description?: ReactNode;
   closable?: boolean;
 }
 export type OverrideProperty<T, K extends keyof T, U> = Omit<T, K> & { [P in keyof Pick<T, K>]: U };
