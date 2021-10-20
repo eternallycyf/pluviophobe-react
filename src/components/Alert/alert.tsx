@@ -38,7 +38,7 @@ const Alert: FC<AlertProps> = (props) => {
                 className={'far'}
                 theme={`${type}`}
                 size='2x'
-                icon={type == 'success' ? 'check-circle' : type == 'error' ? 'times-circle' : 'exclamation-circle'}
+                icon={type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'exclamation-circle'}
               />
             </div>
           }

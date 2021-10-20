@@ -25,11 +25,11 @@
     transition: $menu-transition;
     color: $body-color;
     &.is-active {
-      background: $menu-item-active-color !important;
+      background: cornflowerblue !important;
       color: $white !important;
     }
     &:hover {
-      color: $menu-item-active-color !important;
+      color: hotpink !important;
     }
   }
 }
