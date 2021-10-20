@@ -39,7 +39,7 @@ const Tabs: FC<TabsProps> = (props) => {
       const { displayName } = childElement.type
       return displayName === 'TabItem' ?
         cloneElement(childElement, { index: index.toString() }) :
-        console.error('Warning: Menu has a child which is not a MenuItem Component');
+        console.error('Warning: Tabs has a child which is not a MenuItem Component');
     })
   }
   const renderChildrenContext = () => {
