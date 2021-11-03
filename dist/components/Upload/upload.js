@@ -1,5 +1,4 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import UploadList from './uploadList';
 import Dragger from './dragger';
@@ -111,8 +110,12 @@ export const Upload = (props) => {
             }
         });
     };
-    return (_jsxs("div", Object.assign({ className: "pl-upload-component" }, { children: [_jsxs("div", Object.assign({ className: "pl-upload-input", style: { display: 'inline-block' }, onClick: handleClick }, { children: [drag ?
-                        _jsx(Dragger, Object.assign({ onFile: (files) => { uploadFiles(files); } }, { children: children }), void 0) :
-                        children, _jsx("input", { className: "pl-file-input", style: { display: 'none' }, ref: fileInput, onChange: handleFileChange, type: "file", accept: accept, multiple: multiple }, void 0)] }), void 0), _jsx(UploadList, { fileList: fileList, onRemove: handleRemove }, void 0)] }), void 0));
+    return (React.createElement("div", { className: "pl-upload-component" },
+        React.createElement("div", { className: "pl-upload-input", style: { display: 'inline-block' }, onClick: handleClick },
+            drag ?
+                React.createElement(Dragger, { onFile: (files) => { uploadFiles(files); } }, children) :
+                children,
+            React.createElement("input", { className: "pl-file-input", style: { display: 'none' }, ref: fileInput, onChange: handleFileChange, type: "file", accept: accept, multiple: multiple })),
+        React.createElement(UploadList, { fileList: fileList, onRemove: handleRemove })));
 };
 export default Upload;

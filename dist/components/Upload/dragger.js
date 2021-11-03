@@ -1,5 +1,4 @@
-import { jsx as _jsx } from "react/jsx-runtime";
-import { useState } from 'react';
+import React, { useState } from 'react';
 export const Dragger = (props) => {
     const { onFile, children } = props;
     const [dragOver, setDragOver] = useState(false);
@@ -13,6 +12,6 @@ export const Dragger = (props) => {
         e.preventDefault();
         setDragOver(over);
     };
-    return (_jsx("div", Object.assign({ className: klass, onDragOver: e => { handleDrag(e, true); }, onDragLeave: e => { handleDrag(e, false); }, onDrop: handleDrop }, { children: children }), void 0));
+    return (React.createElement("div", { className: klass, onDragOver: e => { handleDrag(e, true); }, onDragLeave: e => { handleDrag(e, false); }, onDrop: handleDrop }, children));
 };
 export default Dragger;

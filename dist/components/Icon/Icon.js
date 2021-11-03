@@ -9,12 +9,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Icon = (props) => {
     // icon-primary
     const { className, theme } = props, restProps = __rest(props, ["className", "theme"]);
     const classes = ` ${className} icon-${theme}`;
-    return (_jsx(FontAwesomeIcon, Object.assign({ className: classes }, restProps), void 0));
+    return (React.createElement(FontAwesomeIcon, Object.assign({ className: classes }, restProps)));
 };
 export default Icon;

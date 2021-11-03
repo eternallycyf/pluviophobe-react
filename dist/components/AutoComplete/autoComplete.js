@@ -9,8 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Input from '../Input/input';
 import Icon from '../Icon';
 import Transition from '../Transition/transition';
@@ -55,7 +54,7 @@ const AutoComplete = (props) => {
             setShowDropdown(false);
         }
         setHighlightIndex(-1);
-    }, [useDebounceValue]);
+    }, [useDebounceValue, fetchSuggestions]);
     const handleChange = (e) => {
         const value = e.target.value.trim();
         setInputValue(value);
@@ -96,11 +95,17 @@ const AutoComplete = (props) => {
         onSelect && onSelect(item);
         triggerSearch.current = false;
     };
-    const generateDropdown = () => (_jsx(Transition, Object.assign({ in: showDropdown || loading, animation: "zoom-in-top", timeout: 300, onExited: () => { setSuggestions([]); } }, { children: _jsx("ul", Object.assign({ className: "pl-suggestion-list" }, { children: suggestions.map((item, index) => {
-                const cnames = `suggestion-item ${index === highlightIndex && 'is-active'}`;
-                return (_jsx("li", Object.assign({ className: cnames, onClick: () => handleSelect(item) }, { children: renderTemplate(item) }), index));
-            }) }), void 0) }), void 0));
-    return (_jsx(_Fragment, { children: _jsxs("div", Object.assign({ className: 'pl-auto-complete', ref: componentRef }, { children: [_jsx(Input, Object.assign({ value: inputValue, onChange: handleChange, onKeyDown: handleKeyDown }, restProps), void 0), loading &&
-                    _jsx("div", Object.assign({ className: "suggstions-loading-icon" }, { children: _jsx(Icon, { icon: "spinner", size: '6x', spin: true }, void 0) }), void 0), suggestions.length > 0 && generateDropdown()] }), void 0) }, void 0));
+    const generateDropdown = () => (React.createElement(Transition, { in: showDropdown || loading, animation: "zoom-in-top", timeout: 300, onExited: () => { setSuggestions([]); } },
+        React.createElement("ul", { className: "pl-suggestion-list" }, suggestions.map((item, index) => {
+            const cnames = `suggestion-item ${index === highlightIndex && 'is-active'}`;
+            return (React.createElement("li", { key: index, className: cnames, onClick: () => handleSelect(item) }, renderTemplate(item)));
+        }))));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: 'pl-auto-complete', ref: componentRef },
+            React.createElement(Input, Object.assign({ value: inputValue, onChange: handleChange, onKeyDown: handleKeyDown }, restProps)),
+            loading &&
+                React.createElement("div", { className: "suggstions-loading-icon" },
+                    React.createElement(Icon, { icon: "spinner", size: '6x', spin: true })),
+            suggestions.length > 0 && generateDropdown())));
 };
 export default AutoComplete;

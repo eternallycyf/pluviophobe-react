@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react';
+import React, { CSSProperties, FC } from 'react';
 declare type SelectCallback = (selectedIndex: string) => void;
 declare type MenuMode = 'horizontal' | 'vertical';
 export interface MenuProps {
@@ -15,6 +15,6 @@ interface IMenuContext {
     mode?: MenuMode;
     defaultOpenSubMenus?: string[];
 }
-export declare const MenuContext: import("react").Context<IMenuContext>;
+export declare const MenuContext: React.Context<IMenuContext>;
 declare const Menu: FC<MenuProps>;
 export default Menu;

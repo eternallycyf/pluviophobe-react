@@ -14,7 +14,7 @@ const TabItem: FC<TabsItemProps> = (props) => {
     disabled = false,
     className = '',
     style = {},
-    children,
+    // children,
     label = "",
   } = props
   const context = useContext(TabsContext)

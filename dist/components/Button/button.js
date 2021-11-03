@@ -9,13 +9,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
 const Button = (props) => {
-    const { className = '', disabled = false, size = 'lg', type = 'primary', children = null, href = "javaScript:;" } = props, restProps = __rest(props, ["className", "disabled", "size", "type", "children", "href"]);
+    const { className = '', disabled = false, size = 'lg', type = 'primary', children = null, href = "#" } = props, restProps = __rest(props, ["className", "disabled", "size", "type", "children", "href"]);
     const classes = `btn  ${className} btn-${type} btn-${size} ${disabled && "disabled"}`;
     if (type === 'link') {
-        return (_jsx("a", Object.assign({ className: classes, href: href }, restProps, { children: children }), void 0));
+        return (React.createElement("a", Object.assign({ onClick: (e) => e.preventDefault(), className: classes, href: href }, restProps), children));
     }
-    return (_jsx("button", Object.assign({ className: classes, disabled: disabled }, restProps, { children: children }), void 0));
+    return (React.createElement("button", Object.assign({ className: classes, disabled: disabled }, restProps), children));
 };
 export default Button;

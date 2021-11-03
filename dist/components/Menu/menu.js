@@ -1,5 +1,4 @@
-import { jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
-import { createContext, useState, Children, cloneElement } from 'react';
+import React, { createContext, useState, Children, cloneElement } from 'react';
 export const MenuContext = createContext({ index: '0' });
 const Menu = (props) => {
     const { className, mode = 'horizontal', style, children, defaultIndex = '0', onSelect, defaultOpenSubMenus = [] } = props;
@@ -24,6 +23,8 @@ const Menu = (props) => {
         });
     };
     let classes = `pl-menu ${className} ${mode === 'vertical' ? 'menu-vertical' : 'menu-horizontal'}`;
-    return (_jsx(_Fragment, { children: _jsx("ul", Object.assign({ className: classes, style: style }, { children: _jsx(MenuContext.Provider, Object.assign({ value: passedContext }, { children: renderChildren() }), void 0) }), void 0) }, void 0));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("ul", { className: classes, style: style },
+            React.createElement(MenuContext.Provider, { value: passedContext }, renderChildren()))));
 };
 export default Menu;

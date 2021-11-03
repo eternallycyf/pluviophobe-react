@@ -1,4 +1,3 @@
-import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { Children, cloneElement, createContext } from 'react';
 export const TabsContext = createContext({ index: '0' });
 const Tabs = (props) => {
@@ -29,6 +28,9 @@ const Tabs = (props) => {
             return displayName === 'TabItem' && currentActive === index.toString() && childElement.props.children;
         });
     };
-    return (_jsxs(_Fragment, { children: [_jsx("ul", Object.assign({ className: classes, style: style }, { children: _jsx(TabsContext.Provider, Object.assign({ value: passedContext }, { children: renderChildren() }), void 0) }), void 0), _jsx("div", { children: renderChildrenContext() }, void 0)] }, void 0));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("ul", { className: classes, style: style },
+            React.createElement(TabsContext.Provider, { value: passedContext }, renderChildren())),
+        React.createElement("div", null, renderChildrenContext())));
 };
 export default Tabs;

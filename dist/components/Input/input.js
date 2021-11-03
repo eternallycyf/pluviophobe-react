@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import React from 'react';
 import Icon from '../Icon';
 const Input = (props) => {
     const { disabled, size, icon, prepend, append, style, className } = props, restProps = __rest(props, ["disabled", "size", "icon", "prepend", "append", "style", "className"]);
@@ -32,6 +32,12 @@ const Input = (props) => {
         delete restProps.defaultValue;
         restProps.value = fixControlledValue(props.value);
     }
-    return (_jsx(_Fragment, { children: _jsxs("div", Object.assign({ className: classes, style: style }, { children: [prepend && _jsx("div", Object.assign({ className: "pl-input-group-prepend" }, { children: prepend }), void 0), icon && _jsx("div", Object.assign({ className: "icon-wrapper" }, { children: _jsx(Icon, { icon: icon, title: `title-${icon}` }, void 0) }), void 0), _jsx("input", Object.assign({ className: "pl-input-inner", disabled: disabled }, restProps), void 0), append && _jsx("div", Object.assign({ className: "pl-input-group-append" }, { children: append }), void 0)] }), void 0) }, void 0));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: classes, style: style },
+            prepend && React.createElement("div", { className: "pl-input-group-prepend" }, prepend),
+            icon && React.createElement("div", { className: "icon-wrapper" },
+                React.createElement(Icon, { icon: icon, title: `title-${icon}` })),
+            React.createElement("input", Object.assign({ className: "pl-input-inner", disabled: disabled }, restProps)),
+            append && React.createElement("div", { className: "pl-input-group-append" }, append))));
 };
 export default Input;

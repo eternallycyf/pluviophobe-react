@@ -1,5 +1,4 @@
-import { jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { MenuContext } from './menu';
 const MenuItem = (props) => {
     const { index, disabled, className, style, children } = props;
@@ -8,7 +7,8 @@ const MenuItem = (props) => {
     const handleClick = () => {
         context.onSelect && !disabled && typeof index === 'string' && context.onSelect(index);
     };
-    return (_jsx(_Fragment, { children: _jsx("li", Object.assign({ className: classes, style: style, onClick: handleClick }, { children: children }), void 0) }, void 0));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("li", { className: classes, style: style, onClick: handleClick }, children)));
 };
 MenuItem.displayName = 'MenuItem';
 export default MenuItem;

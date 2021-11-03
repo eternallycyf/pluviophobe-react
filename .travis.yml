@@ -15,5 +15,3 @@ deploy:
   local_dir: storybook-static
   on:
     branch: master
-  
-  

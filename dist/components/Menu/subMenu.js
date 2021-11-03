@@ -1,5 +1,4 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useContext, useState, Children, cloneElement } from 'react';
+import React, { useContext, useState, Children, cloneElement } from 'react';
 import { MenuContext } from './menu';
 import Icon from '../Icon/Icon';
 import Transition from '../Transition';
@@ -37,9 +36,14 @@ const SubMenu = (props) => {
                 cloneElement(childElement, { index: `${index}-${i}` }) :
                 console.error('Warning: SubMenu has a child which is not a MenuItem Component');
         });
-        return (_jsx(Transition, Object.assign({ in: menuOpen, timeout: 300, animation: "zoom-in-top" }, { children: _jsx("ul", Object.assign({ className: subMenuClasses }, { children: childComponent }), void 0) }), void 0));
+        return (React.createElement(Transition, { in: menuOpen, timeout: 300, animation: "zoom-in-top" },
+            React.createElement("ul", { className: subMenuClasses }, childComponent)));
     };
-    return (_jsxs("li", Object.assign({ className: classes }, hoverEvents, { children: [_jsxs("div", Object.assign({ className: 'submenu-title' }, clickEvents, { children: [title, _jsx(Icon, { icon: "angle-down", className: "arrow-icon" }, void 0)] }), void 0), renderChildren()] }), index));
+    return (React.createElement("li", Object.assign({ key: index, className: classes }, hoverEvents),
+        React.createElement("div", Object.assign({ className: 'submenu-title' }, clickEvents),
+            title,
+            React.createElement(Icon, { icon: "angle-down", className: "arrow-icon" })),
+        renderChildren()));
 };
 SubMenu.displayName = 'SubMenu';
 export default SubMenu;

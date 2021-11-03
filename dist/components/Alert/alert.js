@@ -9,7 +9,6 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React from "react";
 import Icon from '../Icon';
 const Alert = (props) => {
@@ -17,7 +16,15 @@ const Alert = (props) => {
     const classes = `alert  alert-content ${className} alert-${type}`;
     let close = closable ? 'block' : 'none';
     let [divClose, setDivClose] = React.useState('block');
-    return (_jsx("div", Object.assign({ style: { display: `${divClose}` } }, { children: _jsxs("div", Object.assign({ className: classes }, restProps, { children: [_jsxs("div", Object.assign({ style: { minHeight: '50px', lineHeight: "50px", display: "flex", justifyContent: "center" } }, { children: [showIcon &&
-                            _jsx("div", Object.assign({ style: { display: "inline-block", padding: "4px" } }, { children: _jsx(Icon, { className: 'far', theme: `${type}`, size: '2x', icon: type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'exclamation-circle' }, void 0) }), void 0), _jsx("span", Object.assign({ style: { fontWeight: 700 } }, { children: message }), void 0)] }), void 0), _jsx("button", Object.assign({ onClick: () => setDivClose('none'), style: { display: `${close}` }, className: 'alert-icon alert-close-icon' }, { children: _jsx(Icon, { theme: `${type}`, icon: 'times' }, void 0) }), void 0), _jsx("div", Object.assign({ className: 'alert-description alert-with-description' }, { children: description }), void 0)] }), void 0) }), void 0));
+    return (React.createElement("div", { style: { display: `${divClose}` } },
+        React.createElement("div", Object.assign({ className: classes }, restProps),
+            React.createElement("div", { style: { minHeight: '50px', lineHeight: "50px", display: "flex", justifyContent: "center" } },
+                showIcon &&
+                    React.createElement("div", { style: { display: "inline-block", padding: "4px" } },
+                        React.createElement(Icon, { className: 'far', theme: `${type}`, size: '2x', icon: type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'exclamation-circle' })),
+                React.createElement("span", { style: { fontWeight: 700 } }, message)),
+            React.createElement("button", { onClick: () => setDivClose('none'), style: { display: `${close}` }, className: 'alert-icon alert-close-icon' },
+                React.createElement(Icon, { theme: `${type}`, icon: 'times' })),
+            React.createElement("div", { className: 'alert-description alert-with-description' }, description))));
 };
 export default Alert;

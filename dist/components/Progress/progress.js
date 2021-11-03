@@ -1,6 +1,8 @@
-import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
 const Progress = (props) => {
     const { percent, strokeHeight = 15, showText = true, styles, theme = "primary", } = props;
-    return (_jsx("div", Object.assign({ className: "pl-progress-bar", style: styles }, { children: _jsx("div", Object.assign({ className: "pl-progress-bar-outer", style: { height: `${strokeHeight}px` } }, { children: _jsx("div", Object.assign({ className: `pl-progress-bar-inner color-${theme}`, style: { width: `${percent}%` } }, { children: showText && _jsx("span", Object.assign({ className: "inner-text" }, { children: `${percent}%` }), void 0) }), void 0) }), void 0) }), void 0));
+    return (React.createElement("div", { className: "pl-progress-bar", style: styles },
+        React.createElement("div", { className: "pl-progress-bar-outer", style: { height: `${strokeHeight}px` } },
+            React.createElement("div", { className: `pl-progress-bar-inner color-${theme}`, style: { width: `${percent}%` } }, showText && React.createElement("span", { className: "inner-text" }, `${percent}%`)))));
 };
 export default Progress;
