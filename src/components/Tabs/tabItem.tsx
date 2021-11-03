@@ -1,4 +1,4 @@
-import { CSSProperties, FC, ReactNode, useContext } from 'react'
+import React, { CSSProperties, FC, ReactNode, useContext } from 'react'
 import { TabsContext } from './tabs'
 export interface TabsItemProps {
   index?: string;

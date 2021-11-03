@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, KeyboardEvent, ReactElement, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, FC, KeyboardEvent, ReactElement, useEffect, useRef, useState } from 'react'
 import Input, { InputProps } from '../Input/input'
 import Icon from '../Icon'
 import Transition from '../Transition/transition'
@@ -43,7 +43,7 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
         setLoading(true)
         results.then(data => {
           setLoading(false)
-          setSuggestions(data ?? ['请求失败'])
+          setSuggestions(data)
           if (data.length > 0) {
             setShowDropdown(true)
           }
@@ -59,7 +59,7 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
       setShowDropdown(false)
     }
     setHighlightIndex(-1)
-  }, [useDebounceValue])
+  }, [useDebounceValue, fetchSuggestions])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim()

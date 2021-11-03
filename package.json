@@ -1,33 +1,50 @@
 {
-  "name": "pluviophobe",
+  "name": "pluviophobe-react",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "React components library",
+  "author": "Eternallycyf",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "React"
+  ],
+  "homepage": "http://wangxince.site",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eternallycyf/pluviophobe-react"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-transition-group": "^4.4.3",
-    "moment": "^2.29.1",
-    "node-sass": "^6.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "react-transition-group": "^4.4.2",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "axios": "^0.23.0",
+    "react-transition-group": "^4.4.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean": "rimraf ./dist",
+    "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:nowatch": "cross-env CI=true react-scripts test",
+    "eject": "react-scripts eject",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
+    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:nowatch && npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +63,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "24.0.23",
+    "@types/node": "12.12.14",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "16.9.4",
+    "@types/react-transition-group": "^4.2.3",
+    "@types/storybook__addon-info": "^5.2.1",
+    "cross-env": "^7.0.3",
+    "husky": "^4.3.8",
+    "node-sass": "^4.13.0",
+    "react": "^16.12.0",
+    "react-docgen-typescript-loader": "^3.6.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0",
+    "rimraf": "^3.0.1",
+    "typescript": "3.7.2"
   }
 }

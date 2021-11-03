@@ -1,4 +1,4 @@
-import { CSSProperties, FC, createContext, useState, Children, FunctionComponentElement, cloneElement } from 'react'
+import React, { CSSProperties, FC, createContext, useState, Children, FunctionComponentElement, cloneElement } from 'react'
 import { MenuItemProps } from './menuItem'
 type SelectCallback = (selectedIndex: string) => void;
 type MenuMode = 'horizontal' | 'vertical'

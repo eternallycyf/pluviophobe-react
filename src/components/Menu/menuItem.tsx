@@ -1,4 +1,4 @@
-import { CSSProperties, FC, useContext } from "react";
+import React, { CSSProperties, FC, useContext } from "react";
 import { MenuContext } from './menu'
 export interface MenuItemProps {
   index?: string;

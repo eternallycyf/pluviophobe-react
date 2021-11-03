@@ -1,4 +1,4 @@
-import { ReactElement, ChangeEvent, FC, ComponentProps } from 'react'
+import React, { ReactElement, ChangeEvent, FC, ComponentProps } from 'react'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import Icon from '../Icon'
 

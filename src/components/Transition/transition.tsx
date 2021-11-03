@@ -12,8 +12,8 @@ const Transition: React.FC<TransitionProps> = (props) => {
     classNames,
     animation,
     wrapper,
-    unmountOnExit = true,
-    appear = true,
+    // unmountOnExit = true,
+    // appear = true,
     ...restProps
   } = props
   return (

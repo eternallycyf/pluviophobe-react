@@ -1,4 +1,4 @@
-import { useContext, useState, FC, Children, FunctionComponentElement, MouseEvent, cloneElement } from 'react'
+import React, { useContext, useState, FC, Children, FunctionComponentElement, MouseEvent, cloneElement } from 'react'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
 import Icon from '../Icon/Icon'

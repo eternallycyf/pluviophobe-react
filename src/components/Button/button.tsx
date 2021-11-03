@@ -19,14 +19,14 @@ const Button: FC<ButtonProps> = (props) => {
     size = 'lg',
     type = 'primary',
     children = null,
-    href = "javaScript:;",
+    href = "#",
     ...restProps
   } = props
   const classes = `btn  ${className} btn-${type} btn-${size} ${disabled && "disabled"}`
 
   if (type === 'link') {
     return (
-      <a className={classes} href={href} {...restProps}>
+      <a onClick={(e) => e.preventDefault()} className={classes} href={href} {...restProps}>
         {children}
       </a>
     )
