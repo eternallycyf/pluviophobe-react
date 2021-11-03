@@ -1,6 +1,6 @@
 {
   "name": "pluviophobe-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "React components library",
   "author": "Eternallycyf",
@@ -39,7 +39,7 @@
     "build": "npm run clean && npm run build-ts && npm run build-css",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
-    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "husky": {
     "hooks": {
@@ -66,7 +66,6 @@
   "resolutions": {
     "@types/react": "^16.9.13"
   },
-
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^12.1.2",
